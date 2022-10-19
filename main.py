@@ -1,17 +1,23 @@
 import asyncio
+import time
+from urllib import request
 
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def hello():
-    return "Hello, World!"
+    return jsonify({"message": "Hello, Flask!"})
 
 
 def simple_consumer():
-    input("Press enter request... ")
+    # input("Press enter request... ")
+    while True:
+        request.urlopen("http://127.0.0.1:8000")
+        print("Consume...")
+        time.sleep(2)
 
 
 async def start_flask():
